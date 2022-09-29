@@ -13,6 +13,7 @@ public class Arbitro {
         this.puesto = puesto;
     }
 
+    public Arbitro(){};
     public int getCi() {
         return ci;
     }

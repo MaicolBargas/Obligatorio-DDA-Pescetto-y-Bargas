@@ -2,9 +2,7 @@ package Metodos;
 import Dominio.Jugador;
 import Persistencia.Conexion;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class MetodosJugador {
     public static void MostrarJugador(){
@@ -13,7 +11,7 @@ public class MetodosJugador {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM jugador");
             ResultSet rs = ps.executeQuery();
 
-            List<Jugador> listaJugadores = new ArrayList<>();
+            List<Jugador> listaJugadores = new ArrayList<Jugador>();
             Jugador unJugador = new Jugador();
 
             while (rs.next()){
@@ -32,6 +30,32 @@ public class MetodosJugador {
         }
     }
 
+    public static void MostrarJugadorPorClub(int pIdClub){
+        try {
+            Connection con = Conexion.getConexion();
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM jugador where idClub = ?");
+            ps.setInt(1,pIdClub);
+            ResultSet rs = ps.executeQuery();
+
+            List<Jugador> listaJugadores = new ArrayList<Jugador>();
+
+            Jugador unJugador = new Jugador();
+
+            while (rs.next()){
+                unJugador.setCi(rs.getInt(1));
+                unJugador.setNombre(rs.getString(2));
+                unJugador.setApellido(rs.getString(3));
+                unJugador.setPuesto(rs.getString(4));
+                unJugador.setDorsal(rs.getInt(5));
+                unJugador.setEdad(rs.getInt(6));
+                listaJugadores.add(unJugador);
+                System.out.println(unJugador.toString());
+            }
+        }
+        catch (SQLException ex){
+            System.out.println(ex.toString());
+        }
+    }
 
     public static void AltaJugador(){
         Scanner scanner = new Scanner(System.in);

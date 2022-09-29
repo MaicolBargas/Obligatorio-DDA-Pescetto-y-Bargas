@@ -12,7 +12,7 @@ public class Tecnico {
         this.apellido = apellido;
         this.edad = edad;
     }
-
+public Tecnico(){}
     public int getCi() {
         return ci;
     }

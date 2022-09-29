@@ -1,19 +1,18 @@
 package Dominio;
 
 import java.util.List;
+import Dominio.Tecnico;
 
 public class Equipo {
     private int id;
-    private List<Jugador> titulares;
-    private List<Jugador> suplentes;
+    private String nombre;
     private Tecnico dt;
 
     @Override
     public String toString() {
         return "Equipo{" +
                 "id=" + id +
-                ", titulares=" + titulares +
-                ", suplentes=" + suplentes +
+                ", nombre= "+nombre+
                 ", dt=" + dt +
                 '}';
     }
@@ -25,21 +24,12 @@ public class Equipo {
     public void setId(int id) {
         this.id = id;
     }
-
-    public List<Jugador> getTitulares() {
-        return titulares;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setTitulares(List<Jugador> titulares) {
-        this.titulares = titulares;
-    }
-
-    public List<Jugador> getSuplentes() {
-        return suplentes;
-    }
-
-    public void setSuplentes(List<Jugador> suplentes) {
-        this.suplentes = suplentes;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public Tecnico getDt() {
@@ -50,10 +40,17 @@ public class Equipo {
         this.dt = dt;
     }
 
-    public Equipo(int id, List<Jugador> titulares, List<Jugador> suplentes, Tecnico dt) {
+    public Equipo()
+    {}
+
+    public Equipo(int id,String nombre, Tecnico dt) {
         this.id = id;
-        this.titulares = titulares;
-        this.suplentes = suplentes;
+        this.nombre = nombre;
+        this.dt = dt;
+    }
+
+    public Equipo(String nombre, Tecnico dt) {
+        this.nombre = nombre;
         this.dt = dt;
     }
 }
