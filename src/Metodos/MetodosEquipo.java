@@ -10,6 +10,7 @@ import java.util.Scanner;
 import Dominio.Equipo;
 import Dominio.Tecnico;
 import Persistencia.Conexion;
+import Metodos.MetodosJugador;
 
 public class MetodosEquipo {
     public static void MostrarEquipo(){
@@ -32,6 +33,14 @@ public class MetodosEquipo {
         catch (SQLException ex){
             System.out.println(ex.toString());
         }
+    }
+
+    public static void SeleccionarEquipo(){
+        Scanner scanner = new Scanner(System.in);
+        MostrarEquipo();
+        System.out.println("Escriba el numero del equipo");
+        int equipo = scanner.nextInt();
+        Metodos.MetodosJugador.AltaJugador(equipo);
     }
 
     public static void AltaEquipo(){

@@ -57,7 +57,7 @@ public class MetodosJugador {
         }
     }
 
-    public static void AltaJugador(){
+    public static void AltaJugador(int equipo){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ci");
         int ci = scanner.nextInt();
@@ -71,17 +71,18 @@ public class MetodosJugador {
         int dorsal = scanner.nextInt();
         System.out.println("Edad");
         int edad = scanner.nextInt();
-        Jugador pJugador = new Jugador(ci,nombre,apellido,puesto,dorsal,edad);
+        Jugador pJugador = new Jugador(ci,nombre,apellido,puesto,dorsal,edad,equipo);
         try {
             Connection con = Conexion.getConexion();
-            PreparedStatement ps = con.prepareStatement("INSERT INTO jugador (ci,nombre,apellido,puesto,dorsal,edad) " +
-                                                                         "VALUES (?,?,?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO jugador (ci,nombre,apellido,puesto,dorsal,edad,idEquipo) " +
+                                                                         "VALUES (?,?,?,?,?,?,?)");
             ps.setInt(1,pJugador.getCi());
             ps.setString(2,pJugador.getNombre());
             ps.setString(3,pJugador.getApellido());
             ps.setString(4,pJugador.getPuesto());
             ps.setInt(5,pJugador.getDorsal());
             ps.setInt(6,pJugador.getEdad());
+            ps.setInt(7,pJugador.getEquipo());
             ps.executeUpdate();
 
             System.out.println("Jugador registrado!!");

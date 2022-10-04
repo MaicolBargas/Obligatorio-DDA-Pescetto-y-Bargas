@@ -7,6 +7,16 @@ package Dominio;
     private String puesto;
     private int dorsal;
     private int edad;
+     private int equipo;
+
+     public int getEquipo() {
+         return equipo;
+     }
+
+     public void setEquipo(int equipo) {
+         this.equipo = equipo;
+     }
+
 
     public int getCi() {
         return ci;
@@ -53,13 +63,14 @@ package Dominio;
         this.edad = edad;
     }
     public Jugador(){}
-    public Jugador(int ci, String nombre, String apellido, String puesto, int dorsal, int edad) {
+    public Jugador(int ci, String nombre, String apellido, String puesto, int dorsal, int edad, int equipo) {
         this.ci = ci;
         this.nombre = nombre;
         this.apellido = apellido;
         this.puesto = puesto;
         this.dorsal = dorsal;
         this.edad = edad;
+        this.equipo = equipo;
     }
     @Override
     public String toString() {

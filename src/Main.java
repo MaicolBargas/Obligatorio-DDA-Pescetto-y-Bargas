@@ -13,16 +13,18 @@ public class Main {
         System.out.println("3.Ingresar Tecnico" );
         System.out.println("4.Ingresar Equipo" );
         System.out.println("5.Ingresar Arbitro" );
+        System.out.println("6.Seleccionar Equipo" );
         System.out.println("Seleccione una opción");
 
         Scanner scanner = new Scanner(System.in);
+
         int i = scanner.nextInt();
         switch (i){
             case 1:
                 Metodos.MetodosEquipo.MostrarEquipo();
                 break;
             case 2:
-                Metodos.MetodosJugador.AltaJugador();
+                //Metodos.MetodosJugador.AltaJugador();
                 break;
             case 3:
                 //Metodos.MetodosTecnico.AltaTecnico();
@@ -33,7 +35,11 @@ public class Main {
             case 5:
                 Metodos.MetodosArbitro.AltaArbitro();
                 break;
+            case 6:
+                Metodos.MetodosEquipo.SeleccionarEquipo();
+                break;
         }
+
 
     }
 
