@@ -1,6 +1,17 @@
-create database obligatorioDDA;
+ï»¿create database obligatorioDDA;
 use obligatorioDDA;
 
+create table tecnico(
+ci int primary key,
+nombre varchar(15),
+apellido varchar(20),
+edad int
+);
+create table equipo(
+id int identity(1,1) primary key,
+nombre varchar(30) not null,
+tecnico int references tecnico(ci)
+);
 create table jugador(
 ci int primary key,
 nombre varchar(15),
@@ -10,35 +21,12 @@ dorsal int,
 edad int,
 idEquipo int references Equipo(id)
 );
-
 create table arbitro(
 ci int primary key,
 nombre varchar(15),
 apellido varchar(20),
 puesto varchar(20)
 );
-insert into arbitro values(52397633,'Lucas', 'Redondo','principal');
-insert into arbitro values(5234131,'Peter', 'Soriano','linea');
-
-create table tecnico(
-ci int primary key,
-nombre varchar(15),
-apellido varchar(20),
-edad int
-);
-insert into tecnico values(52397633,'Ernesto', 'Valverde',51);
-insert into tecnico values(47981224,'Matias', 'Pedrin',60);
-
-
-create table equipo(
-id int identity(1,1) primary key,
-nombre varchar(30) not null,
-tecnico int references tecnico(ci)
-);
-insert into equipo values('Holiday Voltics',52397633);
-insert into equipo values('Huston City',47981224);
-
-
 create table partido(
 id int primary key,
 local int references equipo(id),
@@ -48,23 +36,16 @@ fecha varchar(15),
 hora varchar(7),
 clima varchar(15)
 );
-insert into partido values (1,2,'Bernabeu','2022/08/21','15:00','Soleado');
-
 create table arbitroPartido(
 idPartido int references partido(id),
 ciArbitro int references arbitro(ci),
 primary key(idPartido,ciArbitro)
 );
-insert into arbitroPartido values(1,5234131)
-insert into arbitroPartido values(1,43771124)
-insert into arbitroPartido values(1,52397633)
-
 create table titulares(
 ciJugador int references jugador(ci),
 idEquipo int references equipo(id),
 idPartido int references partido(id),
 );
-
 create table suplentes(
 ciJugador int references jugador(ci),
 idEquipo int references equipo(id),
@@ -84,6 +65,22 @@ ciEntra int references jugador(ci),
 ciSale int references jugador(ci),
 minuto int not null,
 );
+
+insert into tecnico values(52397633,'Ernesto', 'Valverde',51);
+insert into tecnico values(47981224,'Matias', 'Pedrin',60);
+
+insert into equipo values('Holiday Voltics',52397633);
+insert into equipo values('Huston City',47981224);
+
+insert into arbitro values(52397633,'Lucas', 'Redondo','principal');
+insert into arbitro values(5234131,'Peter', 'Soriano','linea');
+
+insert into partido values (1,1,2,'Bernabeu','2022/08/21','15:00','Soleado');
+
+insert into arbitroPartido values(1,52341315)
+insert into arbitroPartido values(1,52397633)
+
+
 
 --INSERT EQUIPO 1
 insert into jugador values(47944188,'Roberto', 'Meli','defensa',26,40,1);
@@ -151,7 +148,7 @@ begin
 
 	if @cantidad > 16 
 	begin
-		RAISERROR('ERROR!, máximo de jugadores alcanzado',12,1)
+		RAISERROR('ERROR!, mï¿½ximo de jugadores alcanzado',12,1)
 		ROLLBACK;
  end
 end
